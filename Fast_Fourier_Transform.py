@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.constants import h, hbar, e, k, m_e
-from scipy.signal import find_peaks, blackmanharris
+from scipy import signal
 
 # ========================
 # Simulation Parameters
@@ -70,7 +70,7 @@ inv_B_uniform = np.linspace(inv_B.min(), inv_B.max(), len(B))
 rho_osc_uniform = np.interp(inv_B_uniform, inv_B, rho_osc)
 
 # Step 3: Apply window (Blackman-Harris)
-window = blackmanharris(len(inv_B_uniform))
+window = signal.windows.blackmanharris(len(inv_B_uniform))
 rho_windowed = rho_osc_uniform * window
 
 # Step 4: FFT
